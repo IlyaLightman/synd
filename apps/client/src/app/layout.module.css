@@ -1,0 +1,14 @@
+.layout {
+    width: 100vw;
+    height: 100vh;
+}
+
+.layoutBlock {
+    /* background: rgb(240, 240, 240);
+    border-radius: 24px;
+    width: 480px;
+    padding: 24px; */
+
+    width: fit-content;
+    margin: 48px auto 0 auto;
+}
