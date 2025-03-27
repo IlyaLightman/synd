@@ -1,6 +1,7 @@
-import Fastify from 'fastify'
+import Fastify, { FastifyReply, FastifyRequest } from 'fastify'
 import cors from '@fastify/cors'
 import swagger from '@fastify/swagger'
+import { dealRoutes } from './routes/deal'
 
 const fastify = Fastify()
 
@@ -17,6 +18,18 @@ fastify.register(swagger, {
 		}
 	}
 })
+
+fastify.decorate('admin', async (req: FastifyRequest, reply: FastifyReply) => {
+	const signature = req.headers['admin-signature']
+	console.log(req.headers)
+	if (!signature) {
+		return reply.status(403).send({ message: 'Forbidden' })
+	}
+
+	// veirfy message signing
+})
+
+fastify.register(dealRoutes, { prefix: '/api' })
 
 fastify.get('/ping', async () => {
 	return { message: 'pong' }

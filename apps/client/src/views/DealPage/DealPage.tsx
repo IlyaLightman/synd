@@ -15,7 +15,7 @@ export const DealPage: FC<{ id: string }> = ({ id }) => {
 		title: `Deal ${id}`,
 		description: 'Description of the deal',
 		status: DealStatus.raising,
-		allocation: 100000000,
+		allocation: 10000000,
 		raised: 7200000,
 		tokens: 1000,
 		distributedTokens: 720
