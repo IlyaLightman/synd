@@ -1,17 +1,13 @@
-export type HistoryData = {
-	month: string
-	valuation: number
-}[]
-
-export type HistoryResponse = {
-	history: HistoryData
-	invested: number
-	valuation: number
+export enum DealStatus {
+	done = 'done',
+	failed = 'failed',
+	raising = 'raising',
+	invested = 'invested'
 }
 
-export type Investment = {
-	id: string
-	ticker: string
-	count: number
-	date: string
+export type Deal = {
+	title: string
+	description: string
+	allocation: number
+	status: DealStatus
 }

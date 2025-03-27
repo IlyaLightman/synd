@@ -1,0 +1,21 @@
+.block {
+	display: flex;
+	justify-content: space-between;
+	align-items: self-start;
+}
+
+.link {
+	width: 100%;
+}
+
+.leftBlock,
+.rightBlock {
+	display: flex;
+	flex-direction: column;
+
+	gap: 8px;
+}
+
+.rightBlock {
+	align-items: end;
+}

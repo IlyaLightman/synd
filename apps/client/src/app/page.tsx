@@ -1,9 +1,5 @@
-import styles from './page.module.css'
+import { DealsPage } from 'views/DealsPage/DealsPage'
 
 export default async function Page() {
-	try {
-		return <div className={styles.dashboard}>Synd</div>
-	} catch (err) {
-		console.error(err)
-	}
+	return <DealsPage />
 }

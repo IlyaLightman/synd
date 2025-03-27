@@ -1,0 +1,26 @@
+.tag {
+	border-radius: 8px;
+	padding: 4px 6px;
+
+	max-width: fit-content;
+}
+
+.tag p {
+	font-size: 12px;
+}
+
+.tagDone {
+	background-color: rgb(162, 231, 162);
+}
+
+.tagFailed {
+	background-color: rgb(231, 162, 162);
+}
+
+.tagRaising {
+	background-color: rgb(162, 172, 231);
+}
+
+.tagInvested {
+	background-color: rgb(231, 201, 162);
+}

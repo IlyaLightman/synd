@@ -1,0 +1,16 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.title {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}

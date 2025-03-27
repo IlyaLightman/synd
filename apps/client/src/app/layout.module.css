@@ -1,14 +1,16 @@
-.layout {
-    width: 100vw;
-    height: 100vh;
+.layoutBlock {
+	width: 480px;
+	padding: 24px;
+
+	background: rgb(240, 240, 240);
+	border-radius: 24px;
+
+	margin: 48px auto 0 auto;
 }
 
-.layoutBlock {
-    /* background: rgb(240, 240, 240);
-    border-radius: 24px;
-    width: 480px;
-    padding: 24px; */
-
-    width: fit-content;
-    margin: 48px auto 0 auto;
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 24px;
 }

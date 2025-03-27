@@ -1,5 +1,9 @@
 export const formatRub = (value: number) =>
-	Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(value)
+	Intl.NumberFormat('ru', {
+		style: 'currency',
+		currency: 'RUB',
+		maximumFractionDigits: 0
+	}).format(value)
 
 export const formatPercent = (value: number) =>
 	Intl.NumberFormat('ru-RU', {

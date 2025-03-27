@@ -1,0 +1,13 @@
+.block {
+	display: flex;
+
+	cursor: pointer;
+}
+
+.connected:hover {
+	color: red;
+}
+
+.connect:hover {
+	color: orangered;
+}
