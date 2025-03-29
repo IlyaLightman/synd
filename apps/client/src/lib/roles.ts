@@ -1,3 +1,3 @@
-const ADMINS = ['0x5818FC3Cbafb3C25E33d40CF2DF4830C83199Ce1']
+const ADMINS = ['0x4916eF3d45639d81777B07D865ffEf927f738F36']
 
 export const isAdmin = (address?: string) => (address ? ADMINS.includes(address) : false)
