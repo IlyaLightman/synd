@@ -13,12 +13,14 @@ import { readContract } from 'wagmi/actions'
 import { SYNDICATE_ADDRESS } from 'lib/addresses'
 import { syndicateAbi } from 'lib/abi'
 import { config } from 'lib/wagmi'
-import { useWriteContract } from 'wagmi'
+import { useAccount, useWriteContract } from 'wagmi'
 import { formatEther } from 'viem'
 import { FormInput } from '@/components/FormInput/FormInput'
 import { PageLink } from '@/components/PageLink/PageLink'
 
 export const DealPage: FC<{ id: string }> = ({ id }) => {
+	const { address } = useAccount()
+
 	const [deal, setDeal] = useState<Deal | null>(null)
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const [dealOnchainData, setDealOnchainData] = useState<any>(null)
@@ -45,12 +47,21 @@ export const DealPage: FC<{ id: string }> = ({ id }) => {
 	}
 
 	const fetchOnchainData = async (tokenId: string) => {
+		if (!address) return
+
 		const dealData = (await readContract(config, {
 			address: SYNDICATE_ADDRESS,
 			abi: syndicateAbi,
 			functionName: 'deals',
 			args: [tokenId]
 		})) as string[]
+
+		const balance = await readContract(config, {
+			address: SYNDICATE_ADDRESS,
+			abi: syndicateAbi,
+			functionName: 'balanceOf',
+			args: [address, tokenId]
+		})
 
 		setDealOnchainData({
 			pricePerToken: BigInt(dealData[0]),
@@ -60,7 +71,8 @@ export const DealPage: FC<{ id: string }> = ({ id }) => {
 			deadline: new Date(Number(dealData[4]) * 1000),
 			owner: dealData[5],
 			isClosed: dealData[6],
-			isRefundEnabled: dealData[7]
+			isRefundEnabled: dealData[7],
+			balance
 		})
 	}
 
@@ -94,7 +106,7 @@ export const DealPage: FC<{ id: string }> = ({ id }) => {
 
 	useEffect(() => {
 		fetchDeal().then(({ tokenId }) => fetchOnchainData(tokenId))
-	}, [])
+	}, [address])
 
 	const showBuyButton = deal && [DealStatus.raising].includes(deal.status)
 
@@ -120,7 +132,7 @@ export const DealPage: FC<{ id: string }> = ({ id }) => {
 						<p>Токенов выпущено: {deal.tokenAmount}</p>
 						<p>Токенов куплено: {dealOnchainData.collected}</p>
 						<p>Цена за токен: {formatEther(dealOnchainData.pricePerToken)} ETH</p>
-						<b>Баланс токенов: 0</b>
+						<b>Баланс токенов: {dealOnchainData.balance}</b>
 						<div />
 						<hr className={styles.line} />
 						{showBuyButton && (
