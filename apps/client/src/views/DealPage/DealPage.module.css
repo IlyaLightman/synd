@@ -1,5 +1,13 @@
 .page {
 	display: flex;
+	gap: 16px;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.block {
+	display: flex;
 	flex-direction: column;
 	gap: 8px;
 }
@@ -13,4 +21,20 @@
 	display: flex;
 	gap: 8px;
 	align-items: center;
+}
+
+.invest {
+	display: flex;
+	flex-direction: column;
+	margin-top: 12px;
+	gap: 16px;
+}
+
+.success {
+	color: green;
+}
+
+.line {
+	border-top: 1px solid #ccc;
+	color: rgba(0, 0, 0, 0);
 }

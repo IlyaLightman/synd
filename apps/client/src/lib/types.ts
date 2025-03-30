@@ -2,12 +2,18 @@ export enum DealStatus {
 	done = 'done',
 	failed = 'failed',
 	raising = 'raising',
-	invested = 'invested'
+	invested = 'invested',
+	draft = 'draft'
 }
 
 export type Deal = {
-	title: string
+	id: string
+	name: string
 	description: string
-	allocation: number
+	allocationRub: number
+	allocationEth?: string
 	status: DealStatus
+
+	tokenId?: string
+	tokenAmount?: number
 }

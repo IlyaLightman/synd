@@ -63,7 +63,11 @@ const getDeal = async (
 		return reply.status(404).send({ message: 'Deal not found' })
 	}
 
-	return { ...deal.dealToken, deal }
+	return {
+		...deal,
+		tokenId: deal.dealToken?.[0]?.tokenId,
+		tokenAmount: deal.dealToken?.[0]?.tokenAmount
+	}
 }
 
 export const dealRoutes = (app: FastifyInstance) => {

@@ -24,3 +24,7 @@
 .tagInvested {
 	background-color: rgb(231, 201, 162);
 }
+
+.tagDraft {
+	background-color: rgb(162, 231, 231);
+}

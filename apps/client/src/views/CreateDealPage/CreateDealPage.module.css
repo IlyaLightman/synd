@@ -1,5 +1,13 @@
 .page {
 	display: flex;
+	gap: 16px;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.block {
+	display: flex;
 	flex-direction: column;
 	gap: 24px;
 	max-width: 600px;
@@ -9,27 +17,6 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.inputGroup {
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
-}
-
-.input,
-.textarea {
-	padding: 12px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	transition: border 0.2s;
-}
-
-.input:focus,
-.textarea:focus {
-	border-color: #000;
-	outline: none;
 }
 
 .buttonResult {

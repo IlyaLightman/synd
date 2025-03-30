@@ -4,36 +4,45 @@ import { useAccount } from 'wagmi'
 
 import { DealRow } from '@/components/DealRow/DealRow'
 
-import { DealStatus } from 'lib/types'
+import { Deal } from 'lib/types'
 import { isAdmin } from 'lib/roles'
-import { CreateDeal } from '@/components/CreateDeal/CreateDeal'
+import { PageLink } from '@/components/PageLink/PageLink'
 
 import styles from './DealsPage.module.css'
+import { useEffect, useState } from 'react'
 
 export const DealsPage = () => {
 	const { address } = useAccount()
 
+	const [deals, setDeals] = useState<Deal[] | null>(null)
+
+	const fetchDeals = async () => {
+		try {
+			const response = await fetch('/api/deals')
+			const data = await response.json()
+			setDeals(data.deals)
+		} catch (error) {
+			console.error('Error fetching deals:', error)
+		}
+	}
+
+	useEffect(() => {
+		fetchDeals()
+	}, [])
+
 	return (
 		<div className={styles.page}>
-			<DealRow
-				title='Deal I'
-				description='My deal my deal'
-				allocation={15000000}
-				status={DealStatus.done}
-			/>
-			<DealRow
-				title='Deal II'
-				description='Another deal'
-				allocation={100000}
-				status={DealStatus.raising}
-			/>
-			<DealRow
-				title='The new deal'
-				description='Lets invest'
-				allocation={7230000}
-				status={DealStatus.invested}
-			/>
-			{isAdmin(address) && <CreateDeal />}
+			{deals?.map(deal => (
+				<DealRow
+					id={deal.id}
+					key={deal.id}
+					name={deal.name}
+					description={deal.description}
+					allocationRub={deal.allocationRub}
+					status={deal.status}
+				/>
+			))}
+			{isAdmin(address) && <PageLink text='+ Создать сделку' href='/deal/create' />}
 		</div>
 	)
 }

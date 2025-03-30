@@ -22,6 +22,10 @@ const tagsByStatus: Record<DealStatus, { tag: string; className: string }> = {
 	[DealStatus.invested]: {
 		tag: 'Invested',
 		className: styles.tagInvested
+	},
+	[DealStatus.draft]: {
+		tag: 'Draft',
+		className: styles.tagDraft
 	}
 }
 

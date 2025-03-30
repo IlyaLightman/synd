@@ -10,15 +10,15 @@ import { formatRub } from 'utils'
 
 import styles from './DealRow.module.css'
 
-export const DealRow: FC<Deal> = ({ title, description, allocation, status }) => {
-	const formattedAllocation = formatRub(allocation)
+export const DealRow: FC<Deal> = ({ id, name, description, allocationRub, status }) => {
+	const formattedAllocation = formatRub(allocationRub)
 
 	return (
-		<Link href='/deal/123' className={styles.link}>
+		<Link href={`/deal/${id}`} className={styles.link}>
 			<Container>
 				<div className={styles.block}>
 					<div className={styles.leftBlock}>
-						<b>{title}</b>
+						<b>{name}</b>
 						<p>{description}</p>
 					</div>
 					<div className={styles.rightBlock}>

@@ -19,7 +19,7 @@ export const MetaMask = () => {
 	if (isConnected) {
 		return (
 			<div className={cx([styles.block, styles.connected])} onClick={() => disconnect()}>
-				<p>✅ Connected as {address ? shortenAddress(address) : '0x0'}</p>
+				<p>✅ Подключен как {address ? shortenAddress(address) : '0x0'}</p>
 			</div>
 		)
 	}
@@ -29,7 +29,7 @@ export const MetaMask = () => {
 			className={cx([styles.block, styles.connect])}
 			onClick={() => connect({ connector: injectedConnector })}
 		>
-			<p>➡️ Connect MetaMask</p>
+			<p>➡️ Подключить MetaMask</p>
 		</div>
 	)
 }
