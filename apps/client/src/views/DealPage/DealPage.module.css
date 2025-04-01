@@ -23,11 +23,15 @@
 	align-items: center;
 }
 
+.admin,
 .invest {
 	display: flex;
 	flex-direction: column;
-	margin-top: 12px;
 	gap: 16px;
+}
+
+.invest {
+	margin-top: 12px;
 }
 
 .success {

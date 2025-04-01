@@ -47,6 +47,52 @@ const createDealToken = async (
 	return reply.status(201).send(dealToken)
 }
 
+const withdrawDeal = async (
+	request: FastifyRequest<{ Params: { id: string } }>,
+	reply: FastifyReply
+) => {
+	const { id } = request.params
+
+	const deal = await prisma.deal.findUnique({
+		where: { id }
+	})
+	if (!deal) {
+		return reply.status(404).send({ message: 'Deal not found' })
+	}
+
+	await prisma.deal.update({
+		where: { id },
+		data: {
+			status: DealStatus.invested
+		}
+	})
+
+	return reply.status(200).send({ message: 'Deal status updated successfully' })
+}
+
+const closeDeal = async (
+	request: FastifyRequest<{ Params: { id: string } }>,
+	reply: FastifyReply
+) => {
+	const { id } = request.params
+
+	const deal = await prisma.deal.findUnique({
+		where: { id }
+	})
+	if (!deal) {
+		return reply.status(404).send({ message: 'Deal not found' })
+	}
+
+	await prisma.deal.update({
+		where: { id },
+		data: {
+			status: DealStatus.done
+		}
+	})
+
+	return reply.status(200).send({ message: 'Deal status updated successfully' })
+}
+
 const getDeal = async (
 	request: FastifyRequest<{ Params: { id: string } }>,
 	reply: FastifyReply
@@ -77,6 +123,8 @@ export const dealRoutes = (app: FastifyInstance) => {
 		{ schema: DealSchemas.createDealToken, preHandler: [app.admin] },
 		createDealToken
 	)
+	app.post('/deal/withdraw/:id', { preHandler: [app.admin] }, withdrawDeal)
+	app.post('/deal/close/:id', { preHandler: [app.admin] }, closeDeal)
 	app.get('/deal/:id', { schema: DealSchemas.getDeal }, getDeal)
 	app.get('/deals', async () => {
 		const deals = await prisma.deal.findMany()

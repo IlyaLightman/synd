@@ -30,6 +30,10 @@ a {
 	text-decoration: none;
 }
 
+p {
+	word-wrap: break-word;
+}
+
 @media (prefers-color-scheme: dark) {
 	html {
 		color-scheme: dark;
