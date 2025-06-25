@@ -42,3 +42,7 @@ _Only admin, verification by message signing:_
 
 -   POST /deal - create new deal record
 -   POST /deal/token - create token record for the deal
+
+## Contract
+
+Sepolia: https://sepolia.etherscan.io/address/0x0c20df072864ee171d2884421b62b1438b2b2842
